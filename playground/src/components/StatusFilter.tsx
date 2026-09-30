@@ -1,8 +1,8 @@
-import { STATUS_LABEL, STATUSES, type Job, type Status, type Value } from "../types";
+import { STATUS_LABEL, STATUSES, type FilterValue } from "../types";
 
 
-export function StatusFilter({ jobsCount, value, onChange }: { jobsCount: Record<Value, number>, value: Value, onChange: (v: Value) => void }) {
-  const options: Value[] = ['ALL', ...STATUSES]
+export function StatusFilter({ jobsCount, value, onChange }: { jobsCount: Record<FilterValue, number>, value: FilterValue, onChange: (v: FilterValue) => void }) {
+  const options: FilterValue[] = ['ALL', ...STATUSES]
 
   return (
     <div role="group" aria-label="กรองตามสถานะ">

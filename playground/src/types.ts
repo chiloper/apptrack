@@ -5,7 +5,7 @@ export type Status = (typeof STATUSES)[number];
 export const SOURCES = ['jobthai', 'jobsdb', 'linkedin', 'jobbkk', 'other'] as const;
 export type Source = (typeof SOURCES)[number];
 
-export type Value = Status | 'ALL';
+export type FilterValue = Status | 'ALL';
 export type Job = {
   id: number;
   company: string;
