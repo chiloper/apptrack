@@ -25,15 +25,13 @@ export default function App() {
   }
 
 
-  let visibleJobs = jobs.sort((a, b) => {
-    if (sortJobs === 'desc') {
-      return Number(new Date(a.appliedAt)) - Number(new Date(b.appliedAt))
-    } else {
-      return Number(new Date(b.appliedAt)) - Number(new Date(a.appliedAt))
-    }
-  })
+  let sortedJobs = [...jobs].sort((a, b) =>
+    sortJobs === 'desc'
+      ? Number(new Date(b.appliedAt)) - Number(new Date(a.appliedAt))
+      : Number(new Date(a.appliedAt)) - Number(new Date(b.appliedAt))
+  )
 
-  visibleJobs = filter === 'ALL' ? visibleJobs : visibleJobs.filter((j) => j.status === filter);
+  let visibleJobs = filter === 'ALL' ? sortedJobs : sortedJobs.filter((j) => j.status === filter);
 
 
 
@@ -41,9 +39,8 @@ export default function App() {
     <main>
       <h1>AppTrack</h1>
       <AddJobForm onAdd={addJob} />
-      <StatusFilter value={filter} onChange={setFilter} />
+      <StatusFilter jobs={jobs} value={filter} onChange={setFilter} />
       <SortByDate onChange={setSortJobs} />
-      total: {jobs.length}
       <JobList jobs={visibleJobs} onDelete={deleteJob} onStatusChange={changeStatus} />
     </main>
   );
