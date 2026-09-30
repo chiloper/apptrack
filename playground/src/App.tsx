@@ -1,10 +1,12 @@
 import { useState } from "react";
-import type { Job, NewJob, Status } from "./types";
+import type { Job, NewJob, Status, Value } from "./types";
 import { mockJobs } from "./data/mockJobs";
 import { AddJobForm } from "./components/AddJobForm";
 import { StatusFilter } from "./components/StatusFilter";
 import { JobList } from "./components/JobList";
 import { SortByDate } from "./components/SortByDate";
+import { preconnect } from "react-dom";
+
 
 export default function App() {
 
@@ -32,14 +34,21 @@ export default function App() {
   )
 
   let visibleJobs = filter === 'ALL' ? sortedJobs : sortedJobs.filter((j) => j.status === filter);
-
+  let countStatus: Record<Value, number> = {
+    'ALL': jobs.length,
+    'APPLIED': jobs.filter((f) => f.status === 'APPLIED').length,
+    'INTERVIEW': jobs.filter((f) => f.status === 'INTERVIEW').length,
+    'OFFER': jobs.filter((f) => f.status === 'OFFER').length,
+    'REJECTED': jobs.filter((f) => f.status === 'REJECTED').length,
+    'WITHDRAWN': jobs.filter((f) => f.status === 'WITHDRAWN').length,
+  }
 
 
   return (
     <main>
       <h1>AppTrack</h1>
       <AddJobForm onAdd={addJob} />
-      <StatusFilter jobs={jobs} value={filter} onChange={setFilter} />
+      <StatusFilter jobsCount={countStatus} value={filter} onChange={setFilter} />
       <SortByDate onChange={setSortJobs} />
       <JobList jobs={visibleJobs} onDelete={deleteJob} onStatusChange={changeStatus} />
     </main>

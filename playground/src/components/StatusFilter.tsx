@@ -1,8 +1,7 @@
-import { STATUS_LABEL, STATUSES, type Job, type Status } from "../types";
+import { STATUS_LABEL, STATUSES, type Job, type Status, type Value } from "../types";
 
-type Value = Status | 'ALL';
 
-export function StatusFilter({ jobs, value, onChange }: { jobs: Job[], value: Value, onChange: (v: Value) => void }) {
+export function StatusFilter({ jobsCount, value, onChange }: { jobsCount: Record<Value, number>, value: Value, onChange: (v: Value) => void }) {
   const options: Value[] = ['ALL', ...STATUSES]
 
   return (
@@ -17,7 +16,7 @@ export function StatusFilter({ jobs, value, onChange }: { jobs: Job[], value: Va
             onChange(opt)
           }}
         >
-          {opt === 'ALL' ? `ทั้งหมด : ${jobs.length}` : `${STATUS_LABEL[opt]} ${jobs.filter((j) => j.status === opt).length}`}
+          {opt === 'ALL' ? `ทั้งหมด : ${jobsCount['ALL']}` : `${STATUS_LABEL[opt]} ${jobsCount[opt]}`}
         </button>
       ))}
     </div>
