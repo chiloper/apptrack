@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { STATUS_LABEL, STATUSES, type Status } from "../types";
 
 type Value = Status | 'ALL';
