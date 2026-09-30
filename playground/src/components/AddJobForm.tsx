@@ -29,7 +29,7 @@ export function AddJobForm({ onAdd }: { onAdd: (job: NewJob) => void }) {
     <form onSubmit={handleSubmit} noValidate>
       <label> บริษัท  <input name="company" value={form.company} onChange={handleChange} /> </label>
       <label> ตำแหน่ง  <input name="position" value={form.position} onChange={handleChange} /> </label>
-      <label> วันที่สมัคร  <input type="date" name="data" value={form.appliedAt} onChange={handleChange} /></label>
+      <label> วันที่สมัคร  <input type="date" name="appliedAt" value={form.appliedAt} onChange={handleChange} /></label>
       <label> จากเว็บ
         <select name="source" value={form.source} onChange={handleChange}>
           {SOURCES.map((s) => <option key={s}> {s}</option>)}
