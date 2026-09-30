@@ -43,7 +43,7 @@ export default function App() {
       <AddJobForm onAdd={addJob} />
       <StatusFilter value={filter} onChange={setFilter} />
       <SortByDate onChange={setSortJobs} />
-      total: {visibleJobs.length}
+      total: {jobs.length}
       <JobList jobs={visibleJobs} onDelete={deleteJob} onStatusChange={changeStatus} />
     </main>
   );
